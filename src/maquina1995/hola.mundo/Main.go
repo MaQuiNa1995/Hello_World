@@ -1,21 +1,14 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-
-	// copia nueva
-	profesiones := [...]string{"Caballero Cebolla", "Ilusionista", "Francotirador"}
-	profesionesCopia := profesiones
-	profesionesCopia[0] = "Mago Azul"
-	fmt.Printf("Profesiones:       %v\nProfesiones Copia: %v\n", profesiones, profesionesCopia)
-
-	// copia real apuntando a la misma dirección de memoria
-	profesiones2 := [...]string{"Caballero Cebolla", "Ilusionista", "Francotirador"}
-	profesionesCopia2 := &profesiones2
-	profesionesCopia2[0] = "Domador"
-	fmt.Printf("Profesiones:       %v\nProfesiones Copia: %v\n", profesiones2, profesionesCopia2)
-
+	slice := []string{"Mago del Tiempo", "Monje", "Paladín", "Elementalista", "Esgrimista"}
+	// Crearíamos un nuevo slice omitiendo el último elemento del original
+	// slice[:2] -> crea un array con: Mago del Tiempo Monje
+	// slice[4:]... -> añade a ese array creado los elementos resultantes de descartar 4 elementos del slice original
+	slice2 := append(slice[:2], slice[4:]...)
+	// imprime: [Mago del Tiempo Monje Esgrimista]
+	// se han eliminado los elementos centrales: Paladín y Elementalista
+	fmt.Print(slice2)
 }
