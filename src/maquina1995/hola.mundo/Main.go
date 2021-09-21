@@ -1,15 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
+
+type Magia struct {
+	mana   int
+	nombre string `required,max:"5"`
+}
+
+type MagiaNegra struct {
+	Magia
+	danno int
+}
 
 func main() {
-	profesiones := map[int]string{
-		675: "Soldado",
-		432: "Paladín",
-		321: "Dragontino",
-		968: "Lancero",
-	}
-	_, ok := profesiones[675]
-	fmt.Println(ok)
+	magiaNegra := MagiaNegra{}
+	magiaNegra.mana = 10
+	magiaNegra.danno = 500
+	// {{10} 500}
+	fmt.Println(magiaNegra)
+	// 10
+	fmt.Println(magiaNegra.mana)
+	// 500
+	fmt.Println(magiaNegra.danno)
 
+	animalReflection := reflect.TypeOf(Magia{})
+	campo, _ := animalReflection.FieldByName("nombre")
+	fmt.Print(campo.Tag)
 }
